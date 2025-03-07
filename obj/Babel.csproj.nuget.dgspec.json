@@ -1,25 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alonso\\source\\repos\\Babel\\Babel\\Babel.csproj": {}
+    "C:\\Users\\mauri\\Source\\Repos\\Biblioteca-de-arte-back\\Babel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alonso\\source\\repos\\Babel\\Babel\\Babel.csproj": {
+    "C:\\Users\\mauri\\Source\\Repos\\Biblioteca-de-arte-back\\Babel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alonso\\source\\repos\\Babel\\Babel\\Babel.csproj",
+        "projectUniqueName": "C:\\Users\\mauri\\Source\\Repos\\Biblioteca-de-arte-back\\Babel.csproj",
         "projectName": "Babel",
-        "projectPath": "C:\\Users\\Alonso\\source\\repos\\Babel\\Babel\\Babel.csproj",
-        "packagesPath": "C:\\Users\\Alonso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alonso\\source\\repos\\Babel\\Babel\\obj\\",
+        "projectPath": "C:\\Users\\mauri\\Source\\Repos\\Biblioteca-de-arte-back\\Babel.csproj",
+        "packagesPath": "C:\\Users\\mauri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mauri\\Source\\Repos\\Biblioteca-de-arte-back\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Alonso\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
+          "C:\\Users\\mauri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -28,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 24.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

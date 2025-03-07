@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Babel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c89ea7137a0a718cff3d15c1a64866550ce83c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74b92d7627bff17527913a98f04e52263223359f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Babel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Babel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

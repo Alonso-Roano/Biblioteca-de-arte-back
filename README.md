@@ -21,6 +21,10 @@ Nuestro proyecto busca abordar esta problemática mediante el desarrollo de una 
 - Correo: angomezs.123@gmail.com
 - Usuario de git: Goraz23
 
+### Rodriguez Pech Joel Isaac
+- Correo: joelrodriguez128@gmail.com
+- Usuario de git: joelrod12
+
 
 ## Dependencias
 

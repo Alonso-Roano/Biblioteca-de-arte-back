@@ -44,19 +44,13 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    [Authorize]
-    public async Task<IActionResult> Update(int id, [FromBody] UsuarioDTO usuarioDto)
+    [Authorize(Roles = "Admin")]
+    public async Task<IActionResult> Update(int id, [FromBody] UsuarioCrear usuarioDto)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        bool esAdmin = User.IsInRole("Admin");
 
         var usuario = await _usuarioService.GetByIdAsync(id);
         if (usuario == null) return NotFound();
-
-        if (!esAdmin && usuario.AspNetUserId != userId)
-        {
-            return Forbid();
-        }
 
         var updatedUsuario = await _usuarioService.UpdateAsync(id, usuarioDto);
         if (updatedUsuario == null) return BadRequest();
@@ -71,6 +65,6 @@ public class UsuarioController : ControllerBase
         var success = await _usuarioService.DeleteAsync(id);
         if (!success) return NotFound();
 
-        return NoContent();
+        return Ok(new { message = "Usuario eliminado correctamente", userId = id });
     }
 }

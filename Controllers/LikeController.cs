@@ -18,11 +18,11 @@ public class LikeController : ControllerBase
 
     [HttpPost("toggle/{libroId}")]
     [Authorize]
-    public async Task<IActionResult> ToggleLike(int libroId)
+    public async Task<IActionResult> ToggleLike(int libroId, string token)
     {
         try
         {
-            bool liked = await _likeService.ToggleLikeAsync(libroId);
+            bool liked = await _likeService.ToggleLikeByUserAsync(libroId, token);
             return Ok(new { liked, message = liked ? "Like agregado" : "Like eliminado" });
         }
         catch (UnauthorizedAccessException ex)
@@ -60,6 +60,12 @@ public class LikeController : ControllerBase
         {
             return BadRequest(new { message = ex.Message });
         }
+    }
+    [HttpGet("usuario")]
+    public async Task<IActionResult> GetLikesByUser(string token)
+    {
+        var likedBooks = await _likeService.GetLikesByUserAsync(token);
+        return Ok(likedBooks);
     }
     [Authorize(Roles = "Admin")]
     [HttpDelete("delete-all")]

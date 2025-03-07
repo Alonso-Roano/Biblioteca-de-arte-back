@@ -1,0 +1,86 @@
+2025-02-26 14:11:40.011 -05:00 [INF] User profile is available. Using 'C:\Users\Alonso\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-02-26 14:11:41.445 -05:00 [INF] Now listening on: https://localhost:7061
+2025-02-26 14:11:41.447 -05:00 [INF] Now listening on: http://localhost:5175
+2025-02-26 14:11:41.606 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-26 14:11:41.607 -05:00 [INF] Hosting environment: Development
+2025-02-26 14:11:41.608 -05:00 [INF] Content root path: C:\Users\Alonso\source\repos\Babel\Babel
+2025-02-26 14:11:45.622 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/swagger/index.html - null null
+2025-02-26 14:11:46.107 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/swagger/index.html - 200 null text/html;charset=utf-8 507.0886ms
+2025-02-26 14:11:46.129 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/_vs/browserLink - null null
+2025-02-26 14:11:46.129 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-26 14:11:46.201 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/_framework/aspnetcore-browser-refresh.js - 200 13746 application/javascript; charset=utf-8 73.0571ms
+2025-02-26 14:11:46.528 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/_vs/browserLink - 200 null text/javascript; charset=UTF-8 399.3915ms
+2025-02-26 14:11:46.598 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/swagger/v1/swagger.json - null null
+2025-02-26 14:11:46.817 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 218.6823ms
+2025-02-26 18:35:19.946 -05:00 [INF] User profile is available. Using 'C:\Users\Alonso\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-02-26 18:35:20.460 -05:00 [INF] Now listening on: https://localhost:7061
+2025-02-26 18:35:20.462 -05:00 [INF] Now listening on: http://localhost:5175
+2025-02-26 18:35:21.852 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-02-26 18:35:21.854 -05:00 [INF] Hosting environment: Development
+2025-02-26 18:35:21.860 -05:00 [INF] Content root path: C:\Users\Alonso\source\repos\Babel\Babel
+2025-02-26 18:35:21.937 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/swagger/index.html - null null
+2025-02-26 18:35:22.244 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/swagger/index.html - 200 null text/html;charset=utf-8 316.5897ms
+2025-02-26 18:35:22.322 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/_vs/browserLink - null null
+2025-02-26 18:35:22.322 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/_framework/aspnetcore-browser-refresh.js - null null
+2025-02-26 18:35:22.338 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/_framework/aspnetcore-browser-refresh.js - 200 16495 application/javascript; charset=utf-8 16.0496ms
+2025-02-26 18:35:22.392 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/_vs/browserLink - 200 null text/javascript; charset=UTF-8 69.7241ms
+2025-02-26 18:35:22.500 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/swagger/v1/swagger.json - null null
+2025-02-26 18:35:22.537 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 36.6791ms
+2025-02-26 18:35:38.851 -05:00 [INF] Request starting HTTP/2 POST https://localhost:7061/api/Auth/login - application/json 53
+2025-02-26 18:35:38.863 -05:00 [INF] CORS policy execution successful.
+2025-02-26 18:35:38.979 -05:00 [INF] Executing endpoint 'Babel.Controllers.AuthController.Login (Babel)'
+2025-02-26 18:35:39.019 -05:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Babel.Models.DTOs.Auth.LoginRequestDto) on controller Babel.Controllers.AuthController (Babel).
+2025-02-26 18:35:41.641 -05:00 [INF] Executed DbCommand (95ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-02-26 18:35:42.049 -05:00 [INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-02-26 18:35:42.158 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[LoginProvider], [a].[Name], [a].[Value]
+FROM [AspNetUserTokens] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[LoginProvider] = @__p_1 AND [a].[Name] = @__p_2
+2025-02-26 18:35:42.247 -05:00 [INF] Executed DbCommand (9ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-02-26 18:35:42.506 -05:00 [INF] Executed DbCommand (37ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p17='?' (Size = 450), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p18='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (DbType = Boolean), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [AspNetUserTokens]
+OUTPUT 1
+WHERE [LoginProvider] = @p0 AND [Name] = @p1 AND [UserId] = @p2;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p3, [ConcurrencyStamp] = @p4, [Email] = @p5, [EmailConfirmed] = @p6, [LockoutEnabled] = @p7, [LockoutEnd] = @p8, [NormalizedEmail] = @p9, [NormalizedUserName] = @p10, [PasswordHash] = @p11, [PhoneNumber] = @p12, [PhoneNumberConfirmed] = @p13, [SecurityStamp] = @p14, [TwoFactorEnabled] = @p15, [UserName] = @p16
+OUTPUT 1
+WHERE [Id] = @p17 AND [ConcurrencyStamp] = @p18;
+2025-02-26 18:35:42.554 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450), @__p_1='?' (Size = 450), @__p_2='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[LoginProvider], [a].[Name], [a].[Value]
+FROM [AspNetUserTokens] AS [a]
+WHERE [a].[UserId] = @__p_0 AND [a].[LoginProvider] = @__p_1 AND [a].[Name] = @__p_2
+2025-02-26 18:35:42.571 -05:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-02-26 18:35:42.591 -05:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 450), @p2='?' (Size = 450), @p3='?' (Size = 4000), @p18='?' (Size = 450), @p4='?' (DbType = Int32), @p5='?' (Size = 4000), @p19='?' (Size = 4000), @p6='?' (Size = 256), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserTokens] ([LoginProvider], [Name], [UserId], [Value])
+VALUES (@p0, @p1, @p2, @p3);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p4, [ConcurrencyStamp] = @p5, [Email] = @p6, [EmailConfirmed] = @p7, [LockoutEnabled] = @p8, [LockoutEnd] = @p9, [NormalizedEmail] = @p10, [NormalizedUserName] = @p11, [PasswordHash] = @p12, [PhoneNumber] = @p13, [PhoneNumberConfirmed] = @p14, [SecurityStamp] = @p15, [TwoFactorEnabled] = @p16, [UserName] = @p17
+OUTPUT 1
+WHERE [Id] = @p18 AND [ConcurrencyStamp] = @p19;
+2025-02-26 18:35:42.608 -05:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-02-26 18:35:42.622 -05:00 [INF] Executed action Babel.Controllers.AuthController.Login (Babel) in 3598.2968ms
+2025-02-26 18:35:42.624 -05:00 [INF] Executed endpoint 'Babel.Controllers.AuthController.Login (Babel)'
+2025-02-26 18:35:42.636 -05:00 [INF] Request finished HTTP/2 POST https://localhost:7061/api/Auth/login - 200 null application/json; charset=utf-8 3785.2652ms
+2025-02-26 18:36:01.553 -05:00 [INF] Request starting HTTP/2 GET https://localhost:7061/api/Etiqueta - null null
+2025-02-26 18:36:01.655 -05:00 [INF] Executing endpoint 'Babel.Controllers.EtiquetaController.GetEtiquetas (Babel)'
+2025-02-26 18:36:01.669 -05:00 [INF] Route matched with {action = "GetEtiquetas", controller = "Etiqueta"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[Babel.Models.DTOs.EtiquetaDTO]]] GetEtiquetas() on controller Babel.Controllers.EtiquetaController (Babel).
+2025-02-26 18:36:01.781 -05:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[Nombre]
+FROM [Etiquetas] AS [e]
+2025-02-26 18:36:01.789 -05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Babel.Models.DTOs.EtiquetaDTO, Babel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-02-26 18:36:01.796 -05:00 [INF] Executed action Babel.Controllers.EtiquetaController.GetEtiquetas (Babel) in 122.9921ms
+2025-02-26 18:36:01.798 -05:00 [INF] Executed endpoint 'Babel.Controllers.EtiquetaController.GetEtiquetas (Babel)'
+2025-02-26 18:36:01.799 -05:00 [INF] Request finished HTTP/2 GET https://localhost:7061/api/Etiqueta - 200 null application/json; charset=utf-8 246.1696ms

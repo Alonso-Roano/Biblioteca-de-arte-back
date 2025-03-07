@@ -22,6 +22,7 @@ public class SeederController : ControllerBase
     [HttpGet("Seeder")]
     public async Task<IActionResult> SeedUsers()
     {
+
         await CreateUsers();
         await CreateBooks();
         await CreateTags();
@@ -52,14 +53,14 @@ public class SeederController : ControllerBase
     {
         await CreateRoles();
 
-        var users = new List<(string Username, string Email, string Password, string Role)>
+        var users = new List<(string Username, string Email, string Password, string Role, string ProfilePicture)>
     {
-        ("usuario1", "usuario1@example.com", "Password123!", "User"),
-        ("usuario2", "usuario2@example.com", "Password123!", "User"),
-        ("admin", "admin@example.com", "AdminPassword123!", "Admin")
+        ("usuario1", "usuario1@example.com", "Password123!", "User", "icono_1.png"),
+        ("usuario2", "usuario2@example.com", "Password123!", "User", "icono_1.png"),
+        ("admin", "admin@example.com", "AdminPassword123!", "Admin", "icono_1.png")
     };
 
-        foreach (var (username, email, password, role) in users)
+        foreach (var (username, email, password, role, profilePicture) in users)
         {
             var userExists = await _userManager.FindByNameAsync(username);
             if (userExists == null)
@@ -74,6 +75,7 @@ public class SeederController : ControllerBase
                         Nombre = username,
                         Alias = username,
                         Email = email,
+                        profileImage= profilePicture,
                         AspNetUserId = user.Id
                     };
 
@@ -113,11 +115,11 @@ public class SeederController : ControllerBase
 
         var libros = new List<Libro>
     {
-        new Libro { Titulo = "Libro 1", Descripcion = "Descripción libro 1", FechaPublicacion = DateTime.Now, AutorId = usuarios[0].Id, Slug = "Libro_1" },
-        new Libro { Titulo = "Libro 2", Descripcion = "Descripción libro 2", FechaPublicacion = DateTime.Now, AutorId = usuarios[1].Id, Slug = "Libro_2" },
-        new Libro { Titulo = "Libro 3", Descripcion = "Descripción libro 3", FechaPublicacion = DateTime.Now, AutorId = usuarios[2].Id, Slug = "Libro_3" },
-        new Libro { Titulo = "Libro 4", Descripcion = "Descripción libro 4", FechaPublicacion = DateTime.Now, AutorId = usuarios[0].Id, Slug = "Libro_4" },
-        new Libro { Titulo = "Libro 5", Descripcion = "Descripción libro 5", FechaPublicacion = DateTime.Now, AutorId = usuarios[1].Id, Slug = "Libro_5" }
+        new Libro { Titulo = "Libro 1", Descripcion = "Descripción libro 1", FechaPublicacion = DateTime.Now, AutorId = usuarios[0].Id, Slug = "Libro_1", Color = "#fff"  },
+        new Libro { Titulo = "Libro 2", Descripcion = "Descripción libro 2", FechaPublicacion = DateTime.Now, AutorId = usuarios[1].Id, Slug = "Libro_2", Color = "#000"  },
+        new Libro { Titulo = "Libro 3", Descripcion = "Descripción libro 3", FechaPublicacion = DateTime.Now, AutorId = usuarios[2].Id, Slug = "Libro_3", Color = "#f00"  },
+        new Libro { Titulo = "Libro 4", Descripcion = "Descripción libro 4", FechaPublicacion = DateTime.Now, AutorId = usuarios[0].Id, Slug = "Libro_4", Color = "#00f"  },
+        new Libro { Titulo = "Libro 5", Descripcion = "Descripción libro 5", FechaPublicacion = DateTime.Now, AutorId = usuarios[1].Id, Slug = "Libro_5", Color = "#0f0"  }
     };
 
         await _context.AddRangeAsync(libros);

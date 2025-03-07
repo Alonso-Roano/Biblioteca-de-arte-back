@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "XfanZQRu0KTymWGZ1SH23Uxlb2NKjESvcZgBlU65vvE=",
+  "Hash": "XqRlB5HjhIuF+Ggb8y6NR8TX8bxepflzDk8Tol2y7kE=",
   "Source": "Babel",
   "BasePath": "_content/Babel",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

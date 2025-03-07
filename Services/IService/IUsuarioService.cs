@@ -9,6 +9,6 @@ public interface IUsuarioService
     Task<UsuarioDTO> GetByIdAsync(int id);
     Task<UsuarioDTO> GetByAspNetUserIdAsync(string aspNetUserId);
     Task<UsuarioDTO> CreateAsync(UsuarioDTO usuarioDto);
-    Task<UsuarioDTO> UpdateAsync(int id, UsuarioDTO usuarioDto);
+    Task<UsuarioCrear> UpdateAsync(int id, UsuarioCrear usuarioDto);
     Task<bool> DeleteAsync(int id);
 }

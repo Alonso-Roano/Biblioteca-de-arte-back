@@ -6,6 +6,7 @@ using Babel.Services.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -20,18 +21,12 @@ public class LikeService : ILikeService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<bool> ToggleLikeAsync(int libroId)
+    public async Task<bool> ToggleLikeAsync(int libroId, int usuarioId)
     {
-        var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        if (string.IsNullOrEmpty(userId))
-        {
-            throw new UnauthorizedAccessException("Debes estar autenticado para dar like.");
-        }
-
-        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.AspNetUserId == userId);
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Id == usuarioId);
         if (usuario == null)
         {
-            throw new UnauthorizedAccessException("Usuario no encontrado.");
+            throw new KeyNotFoundException("Usuario no encontrado.");
         }
 
         var likeExistente = await _context.Likes
@@ -55,6 +50,47 @@ public class LikeService : ILikeService
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<bool> ToggleLikeByUserAsync(int libroId, string token)
+    {
+        var handler = new JwtSecurityTokenHandler();
+        var jwtToken = handler.ReadJwtToken(token);
+
+        var aspNetUserId = jwtToken.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+        if (string.IsNullOrEmpty(aspNetUserId))
+        {
+            throw new UnauthorizedAccessException("Token inválido o no contiene el ID de usuario.");
+        }
+
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.AspNetUserId == aspNetUserId);
+        if (usuario == null)
+        {
+            throw new KeyNotFoundException("Usuario no encontrado.");
+        }
+
+        var likeExistente = await _context.Likes
+            .FirstOrDefaultAsync(l => l.LibroId == libroId && l.UsuarioId == usuario.Id);
+
+        if (likeExistente != null)
+        {
+            _context.Likes.Remove(likeExistente);
+            await _context.SaveChangesAsync();
+            return false; 
+        }
+
+        var nuevoLike = new Like
+        {
+            UsuarioId = usuario.Id,
+            LibroId = libroId,
+            FechaLike = DateTime.UtcNow
+        };
+
+        _context.Likes.Add(nuevoLike);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
+
     public async Task<LikesDTO> GetLibroLikesInfoAsync(int libroId)
     {
         var likes = await _context.Likes
@@ -86,13 +122,42 @@ public class LikeService : ILikeService
 
         return likesGrouped;
     }
+    public async Task<List<LibroDTO>> GetLikesByUserAsync(string token)
+    {
+        var handler = new JwtSecurityTokenHandler();
+        var jwtToken = handler.ReadJwtToken(token);
+
+        var aspNetUserId = jwtToken.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+        if (string.IsNullOrEmpty(aspNetUserId))
+        {
+            throw new UnauthorizedAccessException("Token inválido o no contiene el ID de usuario.");
+        }
+
+        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.AspNetUserId == aspNetUserId);
+        if (usuario == null)
+        {
+            throw new KeyNotFoundException("Usuario no encontrado.");
+        }
+
+        var likedBooks = await _context.Likes
+            .Where(l => l.UsuarioId == usuario.Id)
+            .Include(l => l.Libro)
+            .Select(l => new LibroDTO
+            {
+                Id = l.Libro.Id,
+                Titulo = l.Libro.Titulo,
+                AutorNombre = l.Libro.Autor.Nombre,
+                Slug = l.Libro.Slug,
+                Color = l.Libro.Color,
+                FechaPublicacion = l.Libro.FechaPublicacion
+            })
+            .ToListAsync();
+
+        return likedBooks;
+    }
+
     public async Task<bool> DeleteAllLikesAsync()
     {
-        var httpContext = _httpContextAccessor.HttpContext;
-        if (httpContext == null || !httpContext.User.IsInRole("Admin"))
-        {
-            throw new UnauthorizedAccessException("No tienes permisos para eliminar todos los likes.");
-        }
 
         var allLikes = await _context.Likes.ToListAsync();
         if (!allLikes.Any()) return false;

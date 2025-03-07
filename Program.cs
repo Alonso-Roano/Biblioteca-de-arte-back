@@ -83,6 +83,7 @@ builder.Services.AddTransient<ILikeService, LikeService>();
 builder.Services.AddTransient<ILibroService, LibroService>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IEtiquetaService, EtiquetaService>();
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
 
 var app = builder.Build();
 

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class LibroController : ControllerBase
@@ -17,12 +16,47 @@ public class LibroController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetLibros()
+    public async Task<IActionResult> GetLibros([FromQuery] int skip = 0, [FromQuery] int take = 20)
     {
-        var libros = await _libroService.GetAllAsync();
+        var libros = await _libroService.GetAllAsync(skip, take);
         return Ok(libros);
     }
 
+    [HttpGet("buscar")]
+    public async Task<ActionResult<IEnumerable<LibroQueryDTO>>> Buscar(
+        [FromQuery] string? titulo,
+        [FromQuery] string? autor,
+        [FromQuery] string? etiqueta,
+        [FromQuery] bool populares = false,
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 20)
+    {
+        IEnumerable<LibroQueryDTO> libros = new List<LibroQueryDTO>();
+
+        if (!string.IsNullOrEmpty(titulo))
+        {
+            libros = await _libroService.GetByTituloAsync(titulo, skip, take);
+        }
+        else if (!string.IsNullOrEmpty(autor))
+        {
+            libros = await _libroService.GetByAutorNombreAsync(autor, skip, take);
+        }
+        else if (!string.IsNullOrEmpty(etiqueta))
+        {
+            libros = await _libroService.GetByEtiquetaNombreAsync(etiqueta, skip, take);
+        }
+        else if (populares)
+        {
+            libros = await _libroService.GetLibrosMasGustadosAsync();
+        }
+        else
+        {
+            return BadRequest("Debes especificar un criterio de búsqueda.");
+        }
+
+        return Ok(libros);
+    }
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetLibro(int id)
     {
@@ -33,6 +67,7 @@ public class LibroController : ControllerBase
         }
         return Ok(libro);
     }
+    [Authorize]
     [HttpGet("slug/{slug}")]
     public async Task<IActionResult> GetBySlug(string slug)
     {
@@ -41,14 +76,17 @@ public class LibroController : ControllerBase
 
         return Ok(libro);
     }
-    [HttpGet("autor/{autorId}")]
-    public async Task<ActionResult<IEnumerable<LibroDTO>>> GetLibrosByAutor(int autorId)
+
+    [Authorize]
+    [HttpGet("autor")]
+    public async Task<ActionResult<IEnumerable<LibroDTO>>> GetLibrosByAutor(string token)
     {
-        var libros = await _libroService.GetByAutorIdAsync(autorId);
+        var libros = await _libroService.GetLibrosByAutorAsync(token);
         if (libros == null || !libros.Any()) return NotFound("No se encontraron libros para este autor.");
         return Ok(libros);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<LibroDTO>> PostLibro(LibroDTO libroDto)
     {
@@ -56,6 +94,16 @@ public class LibroController : ControllerBase
         return CreatedAtAction(nameof(GetLibro), new { id = createdLibro.Id }, createdLibro);
     }
 
+    [Authorize]
+    [HttpPost("user")]
+    public async Task<ActionResult<LibroCreateDTO>> PostLibroUser(LibroCreateDTO libroDto)
+    {
+        var createdLibro = await _libroService.CreateLibroAspAsync(libroDto);
+        return Ok(createdLibro); 
+    }
+
+
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> PutLibro(int id, LibroDTO libroDto)
     {
@@ -74,6 +122,8 @@ public class LibroController : ControllerBase
         }
     }
 
+    [Authorize]
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLibro(int id)
     {
@@ -84,7 +134,7 @@ public class LibroController : ControllerBase
             {
                 return NotFound();
             }
-            return NoContent();
+            return Ok(new { message = "Libro eliminado correctamente", libroID = id });
         }
         catch (UnauthorizedAccessException)
         {

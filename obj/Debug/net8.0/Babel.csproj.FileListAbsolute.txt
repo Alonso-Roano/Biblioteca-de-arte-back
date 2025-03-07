@@ -168,3 +168,7 @@ C:\Users\Alonso\source\repos\Babel\Babel\bin\Debug\net8.0\System.IO.Pipelines.dl
 C:\Users\Alonso\source\repos\Babel\Babel\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Alonso\source\repos\Babel\Babel\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\Alonso\source\repos\Babel\Babel\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\Alonso\source\repos\Babel\Babel\bin\Debug\net8.0\Babel.staticwebassets.endpoints.json
+C:\Users\Alonso\source\repos\Babel\Babel\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Alonso\source\repos\Babel\Babel\obj\Debug\net8.0\staticwebassets\msbuild.Babel.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Alonso\source\repos\Babel\Babel\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

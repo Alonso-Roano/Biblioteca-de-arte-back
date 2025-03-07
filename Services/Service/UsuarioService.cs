@@ -3,6 +3,7 @@ using Babel.Context;
 using Babel.Models.DTOs;
 using Babel.Models.Entities;
 using Babel.Services.IService;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,13 @@ public class UsuarioService : IUsuarioService
 {
     private readonly ApplicationDbContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly UserManager<IdentityUser> _userManager;
 
-    public UsuarioService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+    public UsuarioService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
     {
         _context = context;
         _httpContextAccessor = httpContextAccessor;
+        _userManager = userManager;
     }
 
     public async Task<IEnumerable<UsuarioDTO>> GetAllAsync()
@@ -84,38 +87,48 @@ public class UsuarioService : IUsuarioService
         };
     }
 
-    public async Task<UsuarioDTO> UpdateAsync(int id, UsuarioDTO usuarioDto)
+    public async Task<UsuarioCrear> UpdateAsync(int id, UsuarioCrear usuarioDto)
     {
         var usuario = await _context.Usuarios.FindAsync(id);
         if (usuario == null) return null;
 
-        if (!UsuarioPuedeModificarOEliminar(usuario))
+        if (!string.IsNullOrEmpty(usuarioDto.Nombre))
         {
-            throw new UnauthorizedAccessException("No tienes permisos para modificar este usuario.");
+            usuario.Nombre = usuarioDto.Nombre;
         }
 
-        usuario.Nombre = usuarioDto.Nombre;
-        usuario.Alias = usuarioDto.Alias ?? usuario.Alias;
-        usuario.Email = usuarioDto.Email;
+        if (!string.IsNullOrEmpty(usuarioDto.Alias))
+        {
+            usuario.Alias = usuarioDto.Alias;
+        }
+
+        if (!string.IsNullOrEmpty(usuarioDto.Password))
+        {
+            var user = await _userManager.FindByIdAsync(usuario.AspNetUserId);
+            if (user != null)
+            {
+                var result = await _userManager.RemovePasswordAsync(user); 
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Error al eliminar la contraseña actual.");
+                }
+
+                result = await _userManager.AddPasswordAsync(user, usuarioDto.Password); 
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Error al agregar la nueva contraseña.");
+                }
+            }
+        }
 
         _context.Usuarios.Update(usuario);
         await _context.SaveChangesAsync();
 
-        return new UsuarioDTO
+        return new UsuarioCrear
         {
-            Id = usuario.Id,
             Nombre = usuario.Nombre,
             Alias = usuario.Alias,
-            Email = usuario.Email
         };
-    }
-
-    private bool UsuarioPuedeModificarOEliminar(Usuario usuario)
-    {
-        var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        bool esAdmin = _httpContextAccessor.HttpContext.User.IsInRole("Admin");
-
-        return esAdmin || usuario.AspNetUserId == userId;
     }
 
     public async Task<bool> DeleteAsync(int id)

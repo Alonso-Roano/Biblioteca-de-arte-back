@@ -19,7 +19,6 @@
             _etiquetaService = etiquetaService;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EtiquetaDTO>>> GetEtiquetas()
         {

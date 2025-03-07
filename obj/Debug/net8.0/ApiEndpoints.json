@@ -17,6 +17,26 @@
   },
   {
     "ContainingType": "Babel.Controllers.AuthController",
+    "Method": "GetDashboardMetrics",
+    "RelativePath": "api/Auth/metrics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Babel.Services.Service.DashboardMetricsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Babel.Controllers.AuthController",
     "Method": "RefreshToken",
     "RelativePath": "api/Auth/refresh",
     "HttpMethod": "POST",
@@ -43,6 +63,27 @@
         "Name": "request",
         "Type": "Babel.Models.DTOs.Auth.RegisterRequestDto",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Babel.Controllers.AuthController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Auth/update-profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Babel.Services.Service.TokenService\u002BUpdateUserProfileDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -173,7 +214,18 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -258,20 +310,71 @@
   {
     "ContainingType": "LibroController",
     "Method": "GetLibrosByAutor",
-    "RelativePath": "api/Libro/autor/{autorId}",
+    "RelativePath": "api/Libro/autor",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "autorId",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[Babel.Models.DTOs.LibroDTO, Babel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LibroController",
+    "Method": "Buscar",
+    "RelativePath": "api/Libro/buscar",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "titulo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "autor",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "etiqueta",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "populares",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "skip",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "take",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Babel.Models.DTOs.LibroQueryDTO, Babel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -296,6 +399,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LibroController",
+    "Method": "PostLibroUser",
+    "RelativePath": "api/Libro/user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "libroDto",
+        "Type": "Babel.Models.DTOs.LibroCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Babel.Models.DTOs.LibroCreateDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Babel.Controllers.LikeController",
@@ -345,6 +474,27 @@
         "Name": "libroId",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Babel.Controllers.LikeController",
+    "Method": "GetLikesByUser",
+    "RelativePath": "api/Like/usuario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -416,7 +566,7 @@
       },
       {
         "Name": "usuarioDto",
-        "Type": "Babel.Models.DTOs.UsuarioDTO",
+        "Type": "Babel.Models.DTOs.UsuarioCrear",
         "IsRequired": true
       }
     ],

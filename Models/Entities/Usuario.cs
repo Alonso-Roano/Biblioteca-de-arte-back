@@ -8,6 +8,7 @@ public class Usuario
     public string Nombre { get; set; }
     public string Alias { get; set; } = "Anonimo";
     public string Email { get; set; }
+    public string profileImage { get; set; }
     public string AspNetUserId { get; set; }
     public IdentityUser AspNetUser { get; set; } 
     public ICollection<Libro> Libros { get; set; }

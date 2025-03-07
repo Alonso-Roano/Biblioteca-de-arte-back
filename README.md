@@ -13,6 +13,9 @@ Nuestro proyecto busca abordar esta problemática mediante el desarrollo de una 
 - Correo: carlosroano201@gmail.com
 - Usuario de git: Alonso-Roano
 
+### Dolores Ramirez Alexis Daniel
+- Correo: alexisdanieldr@gmail.com
+- Usuario de git: Maxxired
 
 ### Gómez Segura Andrea
 - Correo: angomezs.123@gmail.com

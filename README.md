@@ -25,7 +25,7 @@ Nuestro proyecto busca abordar esta problemática mediante el desarrollo de una 
 - Correo: joelrodriguez128@gmail.com
 - Usuario de git: joelrod12
 
-### Rodriguez Pech Joel Isaac
+### Suarez Vargas Mauricio Saul
 - Correo: mauricio.suv@gmail.com
 - Usuario de git: SirMauricio
 
@@ -39,7 +39,7 @@ Nuestro proyecto busca abordar esta problemática mediante el desarrollo de una 
 - `Microsoft.EntityFrameworkCore.Design`: 8.0.2
 - `Microsoft.EntityFrameworkCore.SqlServer`: 8.0.2
 - `Serilog.AspNetCore`: 9.0.0
-- `Swashbuckle.AspNetCore`: 6.6.2
+	- `Swashbuckle.AspNetCore`: 6.6.2
 - `Swashbuckle.AspNetCore.Filters`: 8.0.2
 - `System.IdentityModel.Tokens.Jwt`: 8.0.2
 

@@ -13,6 +13,12 @@ Nuestro proyecto busca abordar esta problemática mediante el desarrollo de una 
 - Correo: carlosroano201@gmail.com
 - Usuario de git: Alonso-Roano
 
+
+### Gómez Segura Andrea
+- Correo: angomezs.123@gmail.com
+- Usuario de git: Goraz23
+
+
 ## Dependencias
 
 ### Dependencias principales

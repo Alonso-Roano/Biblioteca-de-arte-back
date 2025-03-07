@@ -37,7 +37,7 @@ Nuestro proyecto busca abordar esta problemática mediante el desarrollo de una 
 ### 1. Clonar el repositorio
 Si aún no tienes el repositorio en tu máquina, clónalo con:
 ```sh
- git clone https://github.com/Alonso-Roano/Biblioteca-de-arte
+ git clone https://github.com/Alonso-Roano/Biblioteca-de-arte-back
 ```
 
 ### 2. Crear una nueva rama
